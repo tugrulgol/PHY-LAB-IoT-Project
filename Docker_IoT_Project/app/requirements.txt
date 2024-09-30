@@ -1,0 +1,4 @@
+Adafruit_DHT
+RPi.GPIO
+paho-mqtt
+influxdb

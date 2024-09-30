@@ -1,0 +1,95 @@
+Not:İkinci denemede Dockerfile dosyasinda python:3.11 versiyonu kullanılmıştır. Bu çıktıda da benzer hatalar alınmıştır.
+
+pi@raspberrypi:~/Desktop/09.2024-Lab_IoT/Docker_IoT_Project $ docker-compose up -d
+
+WARN[0000] /home/pi/Desktop/09.2024-Lab_IoT/Docker_IoT_Project/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion 
+[+] Building 189.2s (10/10) FINISHED                                                                 docker:default
+ => [iot-app internal] load build definition from Dockerfile                                                   0.0s
+ => => transferring dockerfile: 625B                                                                           0.0s
+ => [iot-app internal] load metadata for docker.io/library/python:3.11-slim-buster                             2.1s
+ => [iot-app internal] load .dockerignore                                                                      0.0s
+ => => transferring context: 2B                                                                                0.0s
+ => [iot-app 1/6] FROM docker.io/library/python:3.11-slim-buster@sha256:c46b0ae5728c2247b99903098ade3176a58e  14.5s
+ => => resolve docker.io/library/python:3.11-slim-buster@sha256:c46b0ae5728c2247b99903098ade3176a58e274d9c7d2  0.0s
+ => => sha256:81b2c804d9ba5014835bedffff61fb42e5d78be661b781654cda06b3d95237f0 1.37kB / 1.37kB                 0.0s
+ => => sha256:12cacc23b6dec78ca7b056d56e3de48252669ed49fffd95ed36adbf9dfe3cec0 6.85kB / 6.85kB                 0.0s
+ => => sha256:c46b0ae5728c2247b99903098ade3176a58e274d9c7d2efeaaab3e0621a53935 988B / 988B                     0.0s
+ => => sha256:67cefd826e1d4a3bce3c47a040ab445ba7ba6586dea8b8380bdad6ee3462f9c1 12.10MB / 12.10MB              12.0s
+ => => sha256:195c388ea91b233c774667795edf5a47d3b02b3db8da49447d964dbafee7a786 244B / 244B                     3.5s
+ => => sha256:db8899040fb5395274edb3f6930ed67e7c7a4cd70adc8f6f21cfa2ab92dce912 3.38MB / 3.38MB                 5.8s
+ => => extracting sha256:67cefd826e1d4a3bce3c47a040ab445ba7ba6586dea8b8380bdad6ee3462f9c1                      1.3s
+ => => extracting sha256:195c388ea91b233c774667795edf5a47d3b02b3db8da49447d964dbafee7a786                      0.0s
+ => => extracting sha256:db8899040fb5395274edb3f6930ed67e7c7a4cd70adc8f6f21cfa2ab92dce912                      0.6s
+ => [iot-app internal] load build context                                                                      0.1s
+ => => transferring context: 687B                                                                              0.0s
+ => [iot-app 2/6] RUN apt-get update && apt-get install -y     python3-pip     python3-dev     gcc     buil  136.7s
+ => [iot-app 3/6] WORKDIR /app                                                                                 0.4s 
+ => [iot-app 4/6] COPY . .                                                                                     0.2s 
+ => [iot-app 5/6] RUN pip install --upgrade pip                                                               15.7s 
+ => ERROR [iot-app 6/6] RUN pip install -r requirements.txt                                                   19.1s 
+------                                                                                                              
+ > [iot-app 6/6] RUN pip install -r requirements.txt:                                                               
+1.733 Collecting Adafruit_DHT (from -r requirements.txt (line 1))                                                   
+2.065   Downloading Adafruit_DHT-1.4.0.tar.gz (15 kB)                                                               
+2.142   Preparing metadata (setup.py): started                                                                      
+3.936   Preparing metadata (setup.py): finished with status 'done'                                                  
+4.047 Collecting RPi.GPIO (from -r requirements.txt (line 2))
+4.143   Downloading RPi.GPIO-0.7.1.tar.gz (29 kB)
+4.250   Preparing metadata (setup.py): started
+5.112   Preparing metadata (setup.py): finished with status 'done'
+5.205 Collecting paho-mqtt (from -r requirements.txt (line 3))
+5.300   Downloading paho_mqtt-2.1.0-py3-none-any.whl.metadata (23 kB)
+5.529 Collecting influxdb (from -r requirements.txt (line 4))
+5.627   Downloading influxdb-5.3.2-py2.py3-none-any.whl.metadata (6.9 kB)
+5.757 Collecting python-dateutil>=2.6.0 (from influxdb->-r requirements.txt (line 4))
+5.853   Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+6.165 Collecting pytz (from influxdb->-r requirements.txt (line 4))
+6.259   Downloading pytz-2024.2-py2.py3-none-any.whl.metadata (22 kB)
+6.535 Collecting requests>=2.17.0 (from influxdb->-r requirements.txt (line 4))
+6.630   Downloading requests-2.32.3-py3-none-any.whl.metadata (4.6 kB)
+6.788 Collecting six>=1.10.0 (from influxdb->-r requirements.txt (line 4))
+6.883   Downloading six-1.16.0-py2.py3-none-any.whl.metadata (1.8 kB)
+7.273 Collecting msgpack (from influxdb->-r requirements.txt (line 4))
+7.368   Downloading msgpack-1.1.0-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl.metadata (8.4 kB)
+7.768 Collecting charset-normalizer<4,>=2 (from requests>=2.17.0->influxdb->-r requirements.txt (line 4))
+7.864   Downloading charset_normalizer-3.3.2-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl.metadata (33 kB)
+8.010 Collecting idna<4,>=2.5 (from requests>=2.17.0->influxdb->-r requirements.txt (line 4))
+8.104   Downloading idna-3.10-py3-none-any.whl.metadata (10 kB)
+8.354 Collecting urllib3<3,>=1.21.1 (from requests>=2.17.0->influxdb->-r requirements.txt (line 4))
+8.449   Downloading urllib3-2.2.3-py3-none-any.whl.metadata (6.5 kB)
+8.593 Collecting certifi>=2017.4.17 (from requests>=2.17.0->influxdb->-r requirements.txt (line 4))
+8.687   Downloading certifi-2024.8.30-py3-none-any.whl.metadata (2.2 kB)
+8.814 Downloading paho_mqtt-2.1.0-py3-none-any.whl (67 kB)
+8.998 Downloading influxdb-5.3.2-py2.py3-none-any.whl (79 kB)
+9.148 Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+9.388 Downloading requests-2.32.3-py3-none-any.whl (64 kB)
+9.542 Downloading six-1.16.0-py2.py3-none-any.whl (11 kB)
+9.659 Downloading msgpack-1.1.0-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (396 kB)
+10.02 Downloading pytz-2024.2-py2.py3-none-any.whl (508 kB)
+10.97 Downloading certifi-2024.8.30-py3-none-any.whl (167 kB)
+11.18 Downloading charset_normalizer-3.3.2-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (136 kB)
+11.37 Downloading idna-3.10-py3-none-any.whl (70 kB)
+11.56 Downloading urllib3-2.2.3-py3-none-any.whl (126 kB)
+11.74 Building wheels for collected packages: Adafruit_DHT, RPi.GPIO
+11.75   Building wheel for Adafruit_DHT (setup.py): started
+12.50   Building wheel for Adafruit_DHT (setup.py): finished with status 'error'
+12.51   error: subprocess-exited-with-error
+12.51   
+12.51   × python setup.py bdist_wheel did not run successfully.
+12.51   │ exit code: 1
+12.51   ╰─> [1 lines of output]
+12.51       Could not detect if running on the Raspberry Pi or Beaglebone Black.  If this failure is unexpected, you can run again with --force-pi or --force-bbb parameter to force using the Raspberry Pi or Beaglebone Black respectively.
+12.51       [end of output]
+12.51   
+12.51   note: This error originates from a subprocess, and is likely not a problem with pip.
+12.51   ERROR: Failed building wheel for Adafruit_DHT
+12.51   Running setup.py clean for Adafruit_DHT
+13.28   Building wheel for RPi.GPIO (setup.py): started
+18.54   Building wheel for RPi.GPIO (setup.py): finished with status 'done'
+18.55   Created wheel for RPi.GPIO: filename=RPi.GPIO-0.7.1-cp311-cp311-linux_aarch64.whl size=80390 sha256=dc8e3a065d8977592ed9869f616cc774d28912bfc5815a4ba8c96a040facf5aa
+18.55   Stored in directory: /root/.cache/pip/wheels/58/9a/da/bc92ced3a63320f51bfb2eb461f0408a206acdcedfa57fbfbe
+18.55 Successfully built RPi.GPIO
+18.55 Failed to build Adafruit_DHT
+18.59 ERROR: ERROR: Failed to build installable wheels for some pyproject.toml based projects (Adafruit_DHT)
+------
+failed to solve: process "/bin/sh -c pip install -r requirements.txt" did not complete successfully: exit code: 1
